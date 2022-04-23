@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
-    "test": "jest"
+    "test": "jest",
+    "test:watchAll": "jest --watchAll --coverage"
   },
   "license": "MIT",
   "dependencies": {
