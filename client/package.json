@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
+        "start": "next start -p $PORT",
         "dev": "next",
         "test": "jest",
         "test:watchAll": "jest --watchAll --coverage",
