@@ -1,6 +1,5 @@
-import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/client';
 
@@ -49,7 +48,6 @@ const UsersComponent = ({ initialOffset = 20 }) => {
                 }))
             );
 
-            console.log(newState);
             return newState;
         });
     }
