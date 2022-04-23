@@ -1,13 +1,17 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/react';
-import UsersComponent, { query } from './User';
+import UsersComponent, { GET_USERS } from './User';
 import { MockedProvider } from '@apollo/client/testing';
 import { act } from 'react-dom/test-utils';
 
 const mocks = [
     {
         request: {
-            query: query,
+            query: GET_USERS,
+            variables: {
+                start: 0,
+                end: 1,
+            },
         },
         result: {
             data: {
@@ -20,6 +24,29 @@ const mocks = [
                         id: '0',
                         phone: '437-467-9302',
                     },
+                    // {
+                    //     address:
+                    //         '312 Bradtke Circle Apt. 259\nNew Cordie, NJ 44327',
+                    //     email: 'John.Sophie@gmail.com',
+                    //     first_name: 'John',
+                    //     id: '1',
+                    //     phone: '437-467-9302',
+                    // },
+                ],
+            },
+        },
+    },
+    {
+        request: {
+            query: GET_USERS,
+            variables: {
+                start: 1,
+                end: 2,
+            },
+        },
+        result: {
+            data: {
+                users: [
                     {
                         address:
                             '312 Bradtke Circle Apt. 259\nNew Cordie, NJ 44327',
@@ -38,7 +65,7 @@ describe('users', () => {
     it('should render users', async () => {
         const { findByText } = render(
             <MockedProvider mocks={mocks}>
-                <UsersComponent />
+                <UsersComponent initialOffset={1} />
             </MockedProvider>
         );
 

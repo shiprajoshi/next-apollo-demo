@@ -4,6 +4,7 @@ const {
     GraphQLString,
     GraphQLList,
     GraphQLID,
+    GraphQLInt,
 } = require('graphql');
 
 const users = require('./userMock');
@@ -39,8 +40,12 @@ module.exports = new GraphQLSchema({
         fields: {
             users: {
                 type: new GraphQLList(UserType),
-                resolve() {
-                    return users;
+                args: {
+                    start: { type: GraphQLInt },
+                    end: { type: GraphQLInt },
+                },
+                resolve(_parent, { start = 0, end = users.length }) {
+                    return users.slice(start, end);
                 },
             },
             name: {

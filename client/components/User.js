@@ -1,6 +1,6 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/client';
 
@@ -23,19 +23,24 @@ const Button = styled.button`
 `;
 
 const UsersComponent = ({ initialOffset = 20 }) => {
-    const { loading, data } = useQuery(query);
-
     const [listItems, setListItems] = useState([]);
-    const [currentOffset, setCurrentOffset] = useState(0);
+    const { fetchMore } = useQuery(GET_USERS, {
+        variables: {
+            start: 0,
+            end: 0,
+        },
+    });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
+        handleClick();
+    }, []);
+
+    function updateList(data) {
         setListItems((prev) => {
             const newState = [];
-            const newItems =
-                data?.users?.slice(
-                    currentOffset,
-                    currentOffset + initialOffset
-                ) || [];
+            const newItems = data?.users || [];
             newState.push(
                 ...prev,
                 ...newItems.map((i) => ({
@@ -43,36 +48,52 @@ const UsersComponent = ({ initialOffset = 20 }) => {
                     color: `rgb(${getRandom()}, ${getRandom()}, ${getRandom()}, 0.2)`,
                 }))
             );
+
+            console.log(newState);
             return newState;
         });
-    }, [currentOffset, data]);
+    }
 
-    const handleClick = () => {
-        setCurrentOffset((prev) => prev + initialOffset);
+    const handleClick = async () => {
+        try {
+            setLoading(true);
+            const res = await fetchMore({
+                variables: {
+                    start: listItems.length,
+                    end: listItems.length + initialOffset,
+                },
+            });
+            setError(null);
+            setLoading(false);
+            updateList(res.data);
+        } catch (e) {
+            setError(e);
+        }
     };
 
     return (
         <div>
             <Container>
-                {loading
-                    ? '..'
-                    : listItems?.map((user) => (
-                          <ListItems key={user.id} color={user.color}>
-                              <h3>{user.first_name}</h3>
-                              <div>{user.address}</div>
-                              <div>{user.email}</div>
-                              <div>{user.phone}</div>
-                          </ListItems>
-                      ))}
+                {listItems?.map((user) => (
+                    <ListItems key={user.id} color={user.color}>
+                        <h3>{user.id}</h3>
+                        <h3>{user.first_name}</h3>
+                        <div>{user.address}</div>
+                        <div>{user.email}</div>
+                        <div>{user.phone}</div>
+                    </ListItems>
+                ))}
             </Container>
+            {loading ? <div>loading...</div> : null}
+            {error ? <div>{error.message}</div> : null}
             <Button onClick={handleClick}>Load more!!</Button>
         </div>
     );
 };
 
-export const query = gql`
-    query {
-        users {
+export const GET_USERS = gql`
+    query ($start: Int, $end: Int) {
+        users(start: $start, end: $end) {
             id
             first_name
             address
