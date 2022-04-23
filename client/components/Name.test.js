@@ -17,7 +17,7 @@ const mocks = [
 ];
 
 describe('Name', () => {
-    it('should render', async () => {
+    it('should render name', async () => {
         const { findByText } = render(
             <MockedProvider mocks={mocks}>
                 <Name />
