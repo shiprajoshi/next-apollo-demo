@@ -65,6 +65,7 @@ const UsersComponent = ({ initialOffset = 20 }) => {
             setLoading(false);
             updateList(res.data);
         } catch (e) {
+            setLoading(false);
             setError(e);
         }
     };

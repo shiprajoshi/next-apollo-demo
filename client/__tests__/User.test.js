@@ -1,6 +1,5 @@
-import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/react';
-import UsersComponent, { GET_USERS } from './User';
+import UsersComponent, { GET_USERS } from '../components/User';
 import { MockedProvider } from '@apollo/client/testing';
 import { act } from 'react-dom/test-utils';
 

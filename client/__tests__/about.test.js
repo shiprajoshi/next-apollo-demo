@@ -1,10 +1,9 @@
-import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
-import Users from './users';
+import About from '../pages/about';
 
 describe('Landing page', () => {
     it('should render', () => {
-        const container = render(<Users />);
+        const container = render(<About />);
         expect(container).toMatchSnapshot();
     });
 });
