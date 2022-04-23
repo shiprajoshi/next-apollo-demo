@@ -1,33 +1,33 @@
 {
-  "name": "next-apollo",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "dev": "next",
-    "test": "jest",
-    "test:watchAll": "jest --watchAll --coverage"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "@apollo/client": "^3.5.10",
-    "@apollo/react-testing": "^4.0.0",
-    "apollo-client": "2.6.10",
-    "apollo-link-http": "^1.5.17",
-    "cross-fetch": "^3.1.5",
-    "graphql": "16.3.0",
-    "graphql-tag": "^2.12.6",
-    "jest": "^27.5.1",
-    "next": "12.1.5",
-    "next-apollo": "5.0.8",
-    "react": "^18.0.0",
-    "react-apollo": "3.1.5",
-    "react-dom": "18.0.0",
-    "styled-components": "^5.3.5"
-  },
-  "devDependencies": {
-    "@testing-library/dom": "^8.13.0",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.1.1",
-    "babel-plugin-styled-components": "^2.0.7"
-  }
+	"name": "next-apollo",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"dev": "next",
+		"test": "jest",
+		"test:watchAll": "jest --watchAll --coverage"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"@apollo/client": "^3.5.10",
+		"@apollo/react-testing": "^4.0.0",
+		"apollo-client": "2.6.10",
+		"apollo-link-http": "^1.5.17",
+		"cross-fetch": "^3.1.5",
+		"graphql": "16.3.0",
+		"graphql-tag": "^2.12.6",
+		"jest": "^27.5.1",
+		"next": "12.1.5",
+		"next-apollo": "5.0.8",
+		"react": "^18.0.0",
+		"react-apollo": "3.1.5",
+		"react-dom": "18.0.0",
+		"styled-components": "^5.3.5"
+	},
+	"devDependencies": {
+		"@testing-library/dom": "^8.13.0",
+		"@testing-library/jest-dom": "^5.16.4",
+		"@testing-library/react": "^13.1.1",
+		"babel-plugin-styled-components": "^2.0.7"
+	}
 }

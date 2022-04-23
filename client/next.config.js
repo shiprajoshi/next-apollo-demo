@@ -1,5 +1,5 @@
 module.exports = {
-  env: {
-    API: process.env.API,
-  },
-}
+	env: {
+		API: process.env.API,
+	},
+};
