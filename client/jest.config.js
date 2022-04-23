@@ -1,9 +1,7 @@
 module.exports = {
     testEnvironment: 'jsdom',
-    "collectCoverageFrom": ["**/*.{ts,js}"],
+    "collectCoverageFrom": ["**/{components,lib,pages}/**/*.{ts,js}"],
     "coveragePathIgnorePatterns" : [
       "client/.next",
-      "jest.config.js",
-      "coverage"
     ]
   }
